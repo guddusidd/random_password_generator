@@ -1,15 +1,12 @@
 import random
-def _rand_pass(length=100):
-    _pwd=''
-    for _ in range(0,length):
+import string
 
-        random.seed()
-        random.getstate()
-        _c=chr(random.randrange(33,126))
-        _pwd+=_c
-    return _pwd
-_ab=_rand_pass()
-print(_ab)
-with open('_pass.txt','w') as _fw:
-    _fw.write(_ab)
-    
+def _rand_pass(length=100):
+    chars = string.ascii_letters + string.digits + string.punctuation
+    return ''.join(random.choice(chars) for _ in range(length))
+
+password = _rand_pass()
+print(password)
+
+with open('_pass.txt', 'w') as file:
+    file.write(password)
